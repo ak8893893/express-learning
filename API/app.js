@@ -16,7 +16,7 @@ app.post('/123', (req, res) => {
   res.send('Hello World AK');
 });
 
-// 讓 express 服務器運行在 port 3001
+// 讓 express 服務器運行在 port 3001   使用命令 node app.js 就能啟動
 app.listen(3001, () => {
     console.log(`Listening on port ${chalk.green('3001')} ${chalk.blue("http://localhost:3001/")}`);
 });
