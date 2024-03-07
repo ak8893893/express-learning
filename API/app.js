@@ -11,6 +11,9 @@ import chalk from 'chalk';
 // 引入 express 模組
 import express from 'express';
 
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
 
 // 產生一個 express 實例 - app
 const app = express();
@@ -18,6 +21,16 @@ const app = express();
 // 使用morgan
 //app.use(morgan('combined'));  // 顯示全部資訊
 app.use(morgan('tiny'));        // 只顯示部分資訊
+
+
+// 獲取當前文件的路徑
+const __filename = fileURLToPath(import.meta.url);
+
+// 獲取當前目錄的路徑
+const __dirname = dirname(__filename);
+
+// 使用express.static中間件來設置靜態文件目錄
+app.use(express.static(join(__dirname, 'public')));
 
 // Express 的核心功能! 稍後解釋
 app.get('/', (req, res) => {
