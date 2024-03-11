@@ -14,9 +14,11 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
+// 動態的取得環境變數
+const PORT = process.env.PORT || 3010;
 
 // 產生一個 express 實例 - app
-const app = express();
+const app = express(); 
 
 // 使用morgan
 //app.use(morgan('combined'));  // 顯示全部資訊
@@ -42,7 +44,7 @@ app.post('/123', (req, res) => {
 });
 
 // 讓 express 服務器運行在 port 3001   使用命令 $ node app.js 就能啟動
-app.listen(3001, () => {
+app.listen(PORT, () => {
     
   // 用 debug 模式就平常不會跳這個出來 開debug模式才會跳出來  用 $ DEBUG=* node app.js  來啟動 用果用 DEBUG='app' 就只會有app的debug訊息
   /*
@@ -54,5 +56,5 @@ app.listen(3001, () => {
   */
   debug("debug mode on")
   
-  console.log(`Listening on port ${chalk.green('3001')} ${chalk.blue("http://localhost:3001/")}`);
+  console.log(`Listening on port ${chalk.green(PORT)} ${chalk.blue("http://localhost:"+PORT+"/")}`);
 });
