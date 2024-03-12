@@ -34,9 +34,13 @@ const __dirname = dirname(__filename);
 // 使用express.static中間件來設置靜態文件目錄
 app.use(express.static(join(__dirname, 'public')));
 
+// 使用ejs 動態的進行渲染
+app.set('views','./src/views');
+app.set('view engine','ejs');
+
 // Express 的核心功能! 稍後解釋
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.render('index',{title:'Globomantics', data: ['a','b','c']});
 });
 
 app.post('/123', (req, res) => {
