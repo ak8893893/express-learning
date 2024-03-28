@@ -31,12 +31,30 @@ const __filename = fileURLToPath(import.meta.url);
 // 獲取當前目錄的路徑
 const __dirname = dirname(__filename);
 
+// session的router變數
+const sessionsRouter = express.Router();
+
 // 使用express.static中間件來設置靜態文件目錄
 app.use(express.static(join(__dirname, 'public')));
 
 // 使用ejs 動態的進行渲染
 app.set('views','./src/views');
 app.set('view engine','ejs');
+
+sessionsRouter.route('/')
+  .get((req,res)=>{
+    res.send('hello sessions');
+  })
+
+sessionsRouter.route('/1')
+.get((req,res)=>{
+  res.send('hello single sessions');
+})
+  
+
+// 網頁連到sessions取資料回去
+app.use('/sessions', sessionsRouter);
+
 
 // Express 的核心功能! 稍後解釋
 app.get('/', (req, res) => {
